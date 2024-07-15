@@ -43,6 +43,7 @@ const (
 	ApplicationKind_LAMBDA     ApplicationKind = 3
 	ApplicationKind_CLOUDRUN   ApplicationKind = 4
 	ApplicationKind_ECS        ApplicationKind = 5
+	ApplicationKind_OPENTOFU   ApplicationKind = 6
 )
 
 // Enum value maps for ApplicationKind.
@@ -53,6 +54,7 @@ var (
 		3: "LAMBDA",
 		4: "CLOUDRUN",
 		5: "ECS",
+		6: "OPENTOFU",
 	}
 	ApplicationKind_value = map[string]int32{
 		"KUBERNETES": 0,
@@ -60,6 +62,7 @@ var (
 		"LAMBDA":     3,
 		"CLOUDRUN":   4,
 		"ECS":        5,
+		"OPENTOFU":   6,
 	}
 )
 
@@ -98,6 +101,7 @@ const (
 	RollbackKind_Rollback_LAMBDA      RollbackKind = 3
 	RollbackKind_Rollback_CLOUDRUN    RollbackKind = 4
 	RollbackKind_Rollback_ECS         RollbackKind = 5
+	RollbackKind_Rollback_OPENTOFU    RollbackKind = 6
 	RollbackKind_Rollback_CUSTOM_SYNC RollbackKind = 15
 )
 
@@ -109,6 +113,7 @@ var (
 		3:  "Rollback_LAMBDA",
 		4:  "Rollback_CLOUDRUN",
 		5:  "Rollback_ECS",
+		6:  "Rollback_OPENTOFU",
 		15: "Rollback_CUSTOM_SYNC",
 	}
 	RollbackKind_value = map[string]int32{
@@ -117,6 +122,7 @@ var (
 		"Rollback_LAMBDA":      3,
 		"Rollback_CLOUDRUN":    4,
 		"Rollback_ECS":         5,
+		"Rollback_OPENTOFU":    6,
 		"Rollback_CUSTOM_SYNC": 15,
 	}
 )
@@ -254,6 +260,7 @@ const (
 	ArtifactVersion_S3_OBJECT        ArtifactVersion_Kind = 2
 	ArtifactVersion_GIT_SOURCE       ArtifactVersion_Kind = 3
 	ArtifactVersion_TERRAFORM_MODULE ArtifactVersion_Kind = 4
+	ArtifactVersion_OPENTOFU_MODULE  ArtifactVersion_Kind = 5
 )
 
 // Enum value maps for ArtifactVersion_Kind.
@@ -264,6 +271,7 @@ var (
 		2: "S3_OBJECT",
 		3: "GIT_SOURCE",
 		4: "TERRAFORM_MODULE",
+		5: "OPENTOFU_MODULE",
 	}
 	ArtifactVersion_Kind_value = map[string]int32{
 		"UNKNOWN":          0,
@@ -271,6 +279,7 @@ var (
 		"S3_OBJECT":        2,
 		"GIT_SOURCE":       3,
 		"TERRAFORM_MODULE": 4,
+		"OPENTOFU_MODULE":  5,
 	}
 )
 
