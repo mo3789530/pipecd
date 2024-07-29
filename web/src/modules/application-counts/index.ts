@@ -35,6 +35,7 @@ const createInitialCounts = (): Record<string, Record<string, number>> => ({
   [APPLICATION_KIND_TEXT[ApplicationKind.LAMBDA]]: createInitialCount(),
   [APPLICATION_KIND_TEXT[ApplicationKind.CLOUDRUN]]: createInitialCount(),
   [APPLICATION_KIND_TEXT[ApplicationKind.ECS]]: createInitialCount(),
+  [APPLICATION_KIND_TEXT[ApplicationKind.OPENTOFU]]: createInitialCount(),
 });
 
 const initialState: ApplicationCounts = {

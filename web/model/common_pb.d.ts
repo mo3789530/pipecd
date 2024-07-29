@@ -146,6 +146,7 @@ export namespace ArtifactVersion {
     S3_OBJECT = 2,
     GIT_SOURCE = 3,
     TERRAFORM_MODULE = 4,
+    OPENTOFU_MODULE = 5,
   }
 }
 
@@ -155,6 +156,7 @@ export enum ApplicationKind {
   LAMBDA = 3,
   CLOUDRUN = 4,
   ECS = 5,
+  OPENTOFU = 6,
 }
 export enum RollbackKind { 
   ROLLBACK_KUBERNETES = 0,
@@ -162,6 +164,7 @@ export enum RollbackKind {
   ROLLBACK_LAMBDA = 3,
   ROLLBACK_CLOUDRUN = 4,
   ROLLBACK_ECS = 5,
+  ROLLBACK_OPENTOFU = 6,
   ROLLBACK_CUSTOM_SYNC = 15,
 }
 export enum ApplicationActiveStatus { 

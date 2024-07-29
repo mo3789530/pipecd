@@ -6,6 +6,7 @@ export const APPLICATION_KIND_TEXT: Record<ApplicationKind, string> = {
   [ApplicationKind.LAMBDA]: "LAMBDA",
   [ApplicationKind.CLOUDRUN]: "CLOUDRUN",
   [ApplicationKind.ECS]: "ECS",
+  [ApplicationKind.OPENTOFU]: "OPENTOFU"
 };
 
 export const APPLICATION_KIND_BY_NAME: Record<string, ApplicationKind> = {
@@ -15,4 +16,5 @@ export const APPLICATION_KIND_BY_NAME: Record<string, ApplicationKind> = {
   [APPLICATION_KIND_TEXT[ApplicationKind.LAMBDA]]: ApplicationKind.LAMBDA,
   [APPLICATION_KIND_TEXT[ApplicationKind.CLOUDRUN]]: ApplicationKind.CLOUDRUN,
   [APPLICATION_KIND_TEXT[ApplicationKind.ECS]]: ApplicationKind.ECS,
+  [APPLICATION_KIND_TEXT[ApplicationKind.OPENTOFU]]: ApplicationKind.OPENTOFU,
 };

@@ -33,6 +33,7 @@ export const listApplicationsHandler = createHandler<ListApplicationsResponse>(
       createApplicationFromObject(dummyApps[ApplicationKind.LAMBDA]),
       createApplicationFromObject(dummyApps[ApplicationKind.CLOUDRUN]),
       createApplicationFromObject(dummyApps[ApplicationKind.ECS]),
+      createApplicationFromObject(dummyApps[ApplicationKind.OPENTOFU]),
     ]);
     return response;
   }
