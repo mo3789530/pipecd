@@ -53,3 +53,14 @@ mv terraform {{ .BinDir }}/terraform-{{ .Version }}
 cp -f {{ .BinDir }}/terraform-{{ .Version }} {{ .BinDir }}/terraform
 {{ end }}
 `
+
+var opentofuInstallScript = `
+cd {{ .WorkingDir }}
+// https://github.com/opentofu/opentofu/releases/download/v1.7.3/tofu_1.7.3_darwin_arm64.tar.gz
+curl  https://github.com/opentofu/opentofu/releases/download/v{{ .Version }}/tofu_{{ .Version }}_darwin_amd64.zip -o tofu_{{ .Version }}_linux_amd64.zip
+unzip tofu_{{ .Version }}_amd64.zip
+mv tofu {{ .BinDir }}/tofu-{{ .Version }}
+{{ if .AsDefault }}
+cp -f {{ .BinDir }}/tofu-{{ .Version }} {{ .BinDir }}/tofu
+{{ end }}
+`

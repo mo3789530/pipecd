@@ -43,6 +43,9 @@ const (
 	// KindTerraformApp represents application configuration for a Terraform application.
 	// This application contains a single workspace of a terraform root module.
 	KindTerraformApp Kind = "TerraformApp"
+	// KindOpenTofuApp represents application configuration for a Opentofu application.
+	// This application contains a single workspace of a Opentofu root module.
+	KindOpneTofuApp Kind = "OpenTofuApp"
 	// KindLambdaApp represents application configuration for an AWS Lambda application.
 	KindLambdaApp Kind = "LambdaApp"
 	// KindCloudRunApp represents application configuration for a CloudRun application.
@@ -78,6 +81,7 @@ type Config struct {
 
 	KubernetesApplicationSpec *KubernetesApplicationSpec
 	TerraformApplicationSpec  *TerraformApplicationSpec
+	OpenTofuApplicationSpec   *OpenTofuApplicationSpec
 	CloudRunApplicationSpec   *CloudRunApplicationSpec
 	LambdaApplicationSpec     *LambdaApplicationSpec
 	ECSApplicationSpec        *ECSApplicationSpec
@@ -106,6 +110,10 @@ func (c *Config) init(kind Kind, apiVersion string) error {
 	case KindTerraformApp:
 		c.TerraformApplicationSpec = &TerraformApplicationSpec{}
 		c.spec = c.TerraformApplicationSpec
+
+	case KindOpneTofuApp:
+		c.OpenTofuApplicationSpec = &OpenTofuApplicationSpec{}
+		c.spec = c.OpenTofuApplicationSpec
 
 	case KindCloudRunApp:
 		c.CloudRunApplicationSpec = &CloudRunApplicationSpec{}
@@ -228,6 +236,8 @@ func (k Kind) ToApplicationKind() (model.ApplicationKind, bool) {
 		return model.ApplicationKind_KUBERNETES, true
 	case KindTerraformApp:
 		return model.ApplicationKind_TERRAFORM, true
+	case KindOpneTofuApp:
+		return model.ApplicationKind_OPENTOFU, true
 	case KindLambdaApp:
 		return model.ApplicationKind_LAMBDA, true
 	case KindCloudRunApp:
@@ -244,6 +254,8 @@ func (c *Config) GetGenericApplication() (GenericApplicationSpec, bool) {
 		return c.KubernetesApplicationSpec.GenericApplicationSpec, true
 	case KindTerraformApp:
 		return c.TerraformApplicationSpec.GenericApplicationSpec, true
+	case KindOpneTofuApp:
+		return c.OpenTofuApplicationSpec.GenericApplicationSpec, true
 	case KindCloudRunApp:
 		return c.CloudRunApplicationSpec.GenericApplicationSpec, true
 	case KindLambdaApp:

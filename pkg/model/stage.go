@@ -62,6 +62,15 @@ const (
 	// the new configuration has been applied.
 	StageTerraformApply Stage = "TERRAFORM_APPLY"
 
+	// StageOpenTofuSync synced infrastructure with all the tf defined in Git.
+	// Firstly, it does plan and if there are any changes detected it applies those changes automatically.
+	StageOpenTofuSync Stage = "OPENTOFU_SYNC"
+	// StageOpenTofuPlan shows terraform plan result.
+	StageOpenTofuPlan Stage = "OPENTOFU_PLAN"
+	// StageOenTofuApply represents the state where
+	// the new configuration has been applied.
+	StageOenTofuApply Stage = "OPENTOFU_APPLY"
+
 	// StageCloudRunSync does quick sync by rolling out the new version
 	// and switching all traffic to it.
 	StageCloudRunSync Stage = "CLOUDRUN_SYNC"

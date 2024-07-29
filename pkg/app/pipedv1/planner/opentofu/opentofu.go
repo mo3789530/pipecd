@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package terraform
+package opentofu
 
 import (
 	"context"
@@ -76,7 +76,7 @@ func (p *Planner) Plan(ctx context.Context, in planner.Input) (out planner.Outpu
 	now := time.Now()
 	out.Version = "N/A"
 
-	files, err := provider.LoadTerraformFiles(ds.AppDir)
+	files, err := provider.LoadOpenTofuFiles(ds.AppDir)
 	if err != nil {
 		return
 	}

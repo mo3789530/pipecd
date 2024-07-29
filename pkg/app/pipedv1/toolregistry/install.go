@@ -30,6 +30,7 @@ const (
 	defaultKustomizeVersion = "3.8.1"
 	defaultHelmVersion      = "3.8.2"
 	defaultTerraformVersion = "0.13.0"
+	defaultOpenTofuVersion  = "1.6.3"
 )
 
 var (
@@ -37,6 +38,7 @@ var (
 	kustomizeInstallScriptTmpl = template.Must(template.New("kustomize").Parse(kustomizeInstallScript))
 	helmInstallScriptTmpl      = template.Must(template.New("helm").Parse(helmInstallScript))
 	terraformInstallScriptTmpl = template.Must(template.New("terraform").Parse(terraformInstallScript))
+	opentofuInstallScriptTmpl  = template.Must(template.New("opentofu").Parse(opentofuInstallScript))
 )
 
 func (r *registry) installKubectl(ctx context.Context, version string) error {
@@ -224,5 +226,52 @@ func (r *registry) installTerraform(ctx context.Context, version string) error {
 	}
 
 	r.logger.Info("just installed terraform", zap.String("version", version))
+	return nil
+}
+
+func (r *registry) installOpenTofu(ctx context.Context, version string) error {
+	workingDir, err := os.MkdirTemp("", "opentofu-install")
+	if err != nil {
+		return err
+	}
+	defer os.RemoveAll(workingDir)
+
+	asDefault := version == ""
+	if asDefault {
+		version = defaultOpenTofuVersion
+	}
+
+	var (
+		buf  bytes.Buffer
+		data = map[string]interface{}{
+			"WorkingDir": workingDir,
+			"Version":    version,
+			"BinDir":     r.binDir,
+			"AsDefault":  asDefault,
+		}
+	)
+	if err := opentofuInstallScriptTmpl.Execute(&buf, data); err != nil {
+		r.logger.Error("failed to render opentofu install script",
+			zap.String("version", version),
+			zap.Error(err),
+		)
+		return fmt.Errorf("failed to install opentofu %s (%w)", version, err)
+	}
+
+	var (
+		script = buf.String()
+		cmd    = exec.CommandContext(ctx, "/bin/sh", "-c", script)
+	)
+	if out, err := cmd.CombinedOutput(); err != nil {
+		r.logger.Error("failed to install opentofu",
+			zap.String("version", version),
+			zap.String("script", script),
+			zap.String("out", string(out)),
+			zap.Error(err),
+		)
+		return fmt.Errorf("failed to install opentofu %s, %s (%w)", version, string(out), err)
+	}
+
+	r.logger.Info("just installed opentofu", zap.String("version", version))
 	return nil
 }
