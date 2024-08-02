@@ -62,10 +62,10 @@ func TestOpenTofuApplicationtConfig(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			fileName:           "testdata/application/terraform-app.yaml",
-			expectedKind:       KindTerraformApp,
+			fileName:           "testdata/application/opentofu-app.yaml",
+			expectedKind:       KindOpneTofuApp,
 			expectedAPIVersion: "pipecd.dev/v1beta1",
-			expectedSpec: &TerraformApplicationSpec{
+			expectedSpec: &OpenTofuApplicationSpec{
 				GenericApplicationSpec: GenericApplicationSpec{
 					Timeout: Duration(6 * time.Hour),
 					Trigger: Trigger{
@@ -84,9 +84,9 @@ func TestOpenTofuApplicationtConfig(t *testing.T) {
 						},
 					},
 				},
-				Input: TerraformDeploymentInput{
-					Workspace:        "dev",
-					TerraformVersion: "0.12.23",
+				Input: OpenTofuDeploymentInput{
+					Workspace:       "dev",
+					OpenTofuVersion: "0.12.23",
 				},
 			},
 			expectedError: nil,

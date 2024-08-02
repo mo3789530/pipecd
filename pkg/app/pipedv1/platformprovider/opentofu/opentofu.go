@@ -167,7 +167,7 @@ func (r PlanResult) NoChanges() bool {
 }
 
 func (r PlanResult) Render() (string, error) {
-	terraformDiffStart := "OpenTofu will perform the following actions:"
+	terraformDiffStart := "Terraform will perform the following actions:"
 	startIndex := strings.Index(r.PlanOutput, terraformDiffStart) + len(terraformDiffStart)
 
 	terraformDiffEnd := fmt.Sprintf("Plan: %d to import, %d to add, %d to change, %d to destroy.", r.Imports, r.Adds, r.Changes, r.Destroys)
@@ -178,7 +178,7 @@ func (r PlanResult) Render() (string, error) {
 	}
 
 	if endIndex < startIndex {
-		return "", fmt.Errorf("unable to parse OpenTofu plan result")
+		return "", fmt.Errorf("unable to parse Terraform plan result")
 	}
 
 	out := r.PlanOutput[startIndex:endIndex]

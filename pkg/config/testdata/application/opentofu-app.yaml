@@ -1,0 +1,6 @@
+apiVersion: pipecd.dev/v1beta1
+kind: OpenTofuApp
+spec:
+  input:
+    workspace: dev
+    terraformVersion: 0.12.23
